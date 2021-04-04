@@ -1,0 +1,58 @@
+@use 'sass:meta'; //Utilizar as para definir nome 'sass:meta as meta
+
+$dark-theme: false !default;
+$main-min_height: 50vh; //Sass entende _ e - como a mesma coisa
+$main-width: 50%;
+$background-color: #fff;
+$main-align: center;
+
+//Com interpolação, o texto sai da mesma forma que na string, com aspas
+//string.unquote() remove as aspas
+
+@if $dark-theme{
+  $background-color: darken($background-color, 100); //lighten funciona para clarear
+}
+
+body, html{
+  width: 100%;
+  min-height: 100vh;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-color;
+
+  .main{
+    @if not meta.global-variable-exists(main-align){ //meta.global-... para variável global
+      $main-align: flex-start ; //Verifica a existência da variável 
+      align-items: $main-align; //E adiciona se precisar
+    }@else{
+      align-items: $main-align
+    }
+
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    min-height: $main-min_height;
+    width: $main-width;
+    gap: 10px;
+
+    %text-change{
+      font-style: italic;
+    } //Permite extensão mas não sobreposição de estilo
+
+    &_title{
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      @extend %text-change;
+      color: red;
+    }
+
+    &_subscription{
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      @extend %text-change;
+      color: blue;
+    }
+  }
+}

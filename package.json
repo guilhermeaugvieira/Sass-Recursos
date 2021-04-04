@@ -1,0 +1,17 @@
+{
+  "name": "sass-recursos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "sass": "^1.32.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --no-source-map --watch scss:css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
