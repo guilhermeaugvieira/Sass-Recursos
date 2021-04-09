@@ -1,4 +1,30 @@
-@use 'reset';
-@use 'style' with (
-  $dark-theme: true
-);
+// Como convenção modulos, arquivos que não carregados sozinhos, iniciam com - ou _
+// Módulos iniciados com _ ou - não são compilados
+
+// @use '_reset';
+// Todas as informações são entendidas somente nesse arquivo
+// Por padrão usam o namespace como nome do arquivo
+// Não são retransmitidas
+// Todas as informações que começam com - ou _ são tratadas como privadas
+// as * remove o namespace definido por padrão
+// Permite configurações de variáveis default com with ($nomeDaVariavel: valor)
+// Só torna possível obter valores privados pelo conceito de encapsulamento
+// O arquivo é lido uma unica vez
+
+// @import '_var'; 
+// Todas as informações são retransmitidas
+// Não precisam de namespace para serem lidas
+// O arquivo é carregado sempre que chamado
+// Não há membros privados
+// Todas as informações são disponibilizadas de forma global
+// Não recomendado para uso
+
+@forward '_reset';
+@forward '_var' hide $example-Text;
+@forward '_mixins';
+//Essa variável não existe, é apenas uma demonstração do comando hide/show
+// Efeito similar ao use
+// Permite a visibilidade de todos as informações
+// Permite controle de todas as informações
+// Permite configuração
+// Por utilizar extensão, o namespace é dispensável

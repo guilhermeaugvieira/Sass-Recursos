@@ -1,0 +1,8 @@
+@mixin fullscreen($padding:0){
+  width: 100%;
+  min-height: 100vh;
+  
+  @if $padding != 0{
+    padding: $padding;
+  }
+}

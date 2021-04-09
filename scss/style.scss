@@ -1,30 +1,35 @@
 @use 'sass:meta'; //Utilizar as para definir nome 'sass:meta as meta
+@import 'general';
 
-$dark-theme: false !default;
-$main-min_height: 50vh; //Sass entende _ e - como a mesma coisa
+$dark-theme: true !default;
+$main-minHeight: 50vh; //Sass entende _ e - como a mesma coisa
 $main-width: 50%;
-$background-color: #fff;
 $main-align: center;
+$backgroundColor: #fff;
 
-//Com interpolação, o texto sai da mesma forma que na string, com aspas
+//Com interpolação, o texto sai da mesma forma que na string, com aspas se tiver
 //string.unquote() remove as aspas
 
 @if $dark-theme{
-  $background-color: darken($background-color, 100); //lighten funciona para clarear
+  $backgroundColor: darken($backgroundColor, 100); //lighten funciona para clarear
 }
 
 body, html{
-  width: 100%;
-  min-height: 100vh;
+  @include fullscreen();
 }
 
 body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $background-color;
+  background-color: $backgroundColor;
 
   .main{
+    &::before{
+      content: $exampleText;
+      color: #FFF;
+    }
+
     @if not meta.global-variable-exists(main-align){ //meta.global-... para variável global
       $main-align: flex-start ; //Verifica a existência da variável 
       align-items: $main-align; //E adiciona se precisar
@@ -35,8 +40,8 @@ body{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    min-height: $main-min_height;
-    width: $main-width;
+    min-height: $main-minHeight;
+    width: calc(#{$main-width});
     gap: 10px;
 
     %text-change{
